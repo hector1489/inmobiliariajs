@@ -51,25 +51,28 @@ const propiedadesJSON = [
 
 //hacer click traer valores
 const btn = document.querySelector("#search");
+const cantidadCuartos = document.querySelector("#input1");
+const metrosDesde = document.querySelector("#input2");
+const metrosHasta = document.querySelector("#input3");
 
 btn.addEventListener('click', () => {
-  const Cuartos = document.querySelector("#input1").value;
-  const metros = document.querySelector("#input2").value;
-  const metros2 = document.querySelector("#input3").value;
-  if (Cuartos && metros && metros2) {
-    verPropiedades(Cuartos, metros, metros2)
-  }else {
-    alert('Todos los filtros son obligatorios')
+  if (
+    cantidadCuartos.value === '' ||
+    metrosDesde.value === '' ||
+    metrosHasta.value === ''
+  ) {
+    return alert('Todos los datos son requeridos');
   }
-});
 
-//desafio part2,el dato "desde" no debe ser mayor que el "hasta".
-btn.addEventListener('click', () => {
-  const metros = document.querySelector("#input2").value;
-  const metros2 = document.querySelector("#input3").value;
-  if (metros < metros2) {
-    alert('Error al ingresar datos')
+  if (metrosDesde.value > metrosHasta.value) {
+    return alert('metros desde no puede ser mayor a metros hasta');
   }
+
+  verPropiedades(
+    cantidadCuartos.value,
+    metrosDesde.value,
+    metrosHasta.value
+  );
 });
 
 
